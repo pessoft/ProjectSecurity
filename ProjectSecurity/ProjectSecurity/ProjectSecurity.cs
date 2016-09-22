@@ -45,12 +45,5 @@ namespace ProjectSecurity
             
             OnButtonEncodDecodClick(new ButtonClickEncodDecodEventArgs(processType, textBoxIn.Text));
         }
-
-        private void ProjectSecurity_Load(object sender, EventArgs e)
-        {
-
-        }
-
-       
     }
 }

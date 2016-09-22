@@ -39,14 +39,14 @@
             this.buttonDecoding = new System.Windows.Forms.Button();
             this.buttonEncoding = new System.Windows.Forms.Button();
             this.tabPageFrequency = new System.Windows.Forms.TabPage();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.menu = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.frequencyContent = new System.Windows.Forms.TabControl();
             this.tabLoadText = new System.Windows.Forms.TabPage();
             this.tabFrequencyLit = new System.Windows.Forms.TabPage();
             this.tabFrequencyPairsLit = new System.Windows.Forms.TabPage();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectContent.SuspendLayout();
             this.tabPageEncryption.SuspendLayout();
             this.panelEncodDecod.SuspendLayout();
@@ -57,9 +57,9 @@
             this.groupBoxTextIn.SuspendLayout();
             this.groupBoxTextOut.SuspendLayout();
             this.tabPageFrequency.SuspendLayout();
+            this.frequencyContent.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
-            this.frequencyContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // projectContent
@@ -176,6 +176,7 @@
             this.buttonDecoding.Tag = "";
             this.buttonDecoding.Text = "Decoding";
             this.buttonDecoding.UseVisualStyleBackColor = true;
+            this.buttonDecoding.Click += new System.EventHandler(this.ButtonEncryptClick);
             // 
             // buttonEncoding
             // 
@@ -188,6 +189,7 @@
             this.buttonEncoding.Tag = "";
             this.buttonEncoding.Text = "Encoding";
             this.buttonEncoding.UseVisualStyleBackColor = true;
+            this.buttonEncoding.Click += new System.EventHandler(this.ButtonEncryptClick);
             // 
             // tabPageFrequency
             // 
@@ -199,40 +201,6 @@
             this.tabPageFrequency.TabIndex = 1;
             this.tabPageFrequency.Text = "Frequency";
             this.tabPageFrequency.UseVisualStyleBackColor = true;
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 400);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(760, 22);
-            this.statusStrip.TabIndex = 1;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // menu
-            // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menu.Location = new System.Drawing.Point(0, 0);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(760, 24);
-            this.menu.TabIndex = 2;
-            this.menu.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
-            this.toolStripStatusLabel.Text = "Ready";
-            this.toolStripStatusLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
             // frequencyContent
             // 
@@ -276,6 +244,40 @@
             this.tabFrequencyPairsLit.Text = "Frequency pairs letters chart";
             this.tabFrequencyPairsLit.UseVisualStyleBackColor = true;
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 400);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(760, 22);
+            this.statusStrip.TabIndex = 1;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
+            this.toolStripStatusLabel.Text = "Ready";
+            this.toolStripStatusLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(760, 24);
+            this.menu.TabIndex = 2;
+            this.menu.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
             // ProjectSecurity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,7 +289,6 @@
             this.Name = "ProjectSecurity";
             this.Text = "ProjectSecurity";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.ProjectSecurity_Load);
             this.projectContent.ResumeLayout(false);
             this.tabPageEncryption.ResumeLayout(false);
             this.panelEncodDecod.ResumeLayout(false);
@@ -300,11 +301,11 @@
             this.groupBoxTextOut.ResumeLayout(false);
             this.groupBoxTextOut.PerformLayout();
             this.tabPageFrequency.ResumeLayout(false);
+            this.frequencyContent.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
-            this.frequencyContent.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
