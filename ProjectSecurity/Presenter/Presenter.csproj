@@ -48,6 +48,10 @@
       <Project>{1bd4765c-4ef7-4bf3-bfb5-de29742984a4}</Project>
       <Name>Security</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileManager\FileManager.csproj">
+      <Project>{03071404-7838-4bbc-8656-ee14d0729302}</Project>
+      <Name>FileManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\View\View.csproj">
       <Project>{f00f9847-b02c-4eb0-b9be-f12a0aa2bf5f}</Project>
       <Name>View</Name>

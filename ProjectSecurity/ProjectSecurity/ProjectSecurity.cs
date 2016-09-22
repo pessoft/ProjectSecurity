@@ -22,15 +22,24 @@ namespace ProjectSecurity
 
         private void InitializeTagBtn()
         {
-            buttonEncoding.Tag = EncryptionEnum.Encoding;
-            buttonDecoding.Tag = EncryptionEnum.Decoding;
+            
+            encodingButton.Tag = EncryptionEnum.Encoding;
+            decodingButton.Tag = EncryptionEnum.Decoding;
         }
 
+        private string textSavePath = String.Empty, textOpenFile = string.Empty;
         public event EventHandler<ButtonClickEncodDecodEventArgs> ButtonEncodDecodClick = delegate{};
+        public event EventHandler<SavingTextEventArgs> SavingTextForFile = delegate { };
+        public event EventHandler<OpenFileTextEventArgs> OpenTextFromFile = delegate { };
 
-        public void SetDecodingText(string text)
+        public void SetOutText(string text)
         {
             textBoxOut.Text = text;
+        }
+
+        public void SetInText(string text)
+        {
+            textBoxIn.Text = text;
         }
 
         protected void OnButtonEncodDecodClick(ButtonClickEncodDecodEventArgs e)
@@ -38,12 +47,36 @@ namespace ProjectSecurity
             ButtonEncodDecodClick(this, e);
         }
 
+        protected void OnSavingTextForFile(SavingTextEventArgs e)
+        {
+            SavingTextForFile(this, e);
+        }
+
+        protected void OnOpenTextFromFile(OpenFileTextEventArgs e)
+        {
+            OpenTextFromFile(this, e);
+        }
+
         private void ButtonEncryptClick(object sender, EventArgs e)
         {
-            var button = (Button)sender;
+            var button = (ToolStripMenuItem)sender;
             var processType = (EncryptionEnum)button.Tag;
             
             OnButtonEncodDecodClick(new ButtonClickEncodDecodEventArgs(processType, textBoxIn.Text));
         }
+
+        private void SaveText(object sender, EventArgs e)
+        {
+            string text = string.Empty;
+            OnSavingTextForFile(new SavingTextEventArgs(textSavePath, text));
+        }
+
+        private void OpenText(object sender, EventArgs e)
+        {
+            OnOpenTextFromFile(new OpenFileTextEventArgs(textOpenFile));
+        }
+
+
+
     }
 }

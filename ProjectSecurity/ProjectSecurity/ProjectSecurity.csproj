@@ -85,6 +85,10 @@
       <Project>{1bd4765c-4ef7-4bf3-bfb5-de29742984a4}</Project>
       <Name>Security</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileManager\FileManager.csproj">
+      <Project>{03071404-7838-4bbc-8656-ee14d0729302}</Project>
+      <Name>FileManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presenter\Presenter.csproj">
       <Project>{a9d35553-25d0-4752-a4c4-d84cc08fa352}</Project>
       <Name>Presenter</Name>

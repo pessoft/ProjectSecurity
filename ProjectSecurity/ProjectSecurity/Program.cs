@@ -15,7 +15,7 @@ namespace ProjectSecurity
             Application.SetCompatibleTextRenderingDefault(false);
             var projectSecurity = new ProjectSecurity();
             var encryption = new CaesarCode();
-            Presenter.Presenter presenter = new Presenter.Presenter(projectSecurity, encryption);
+            Presenter.Presenter presenter = new Presenter.Presenter(projectSecurity, encryption, new FileManager.FileManager());
             Application.Run(projectSecurity);
         }
     }
