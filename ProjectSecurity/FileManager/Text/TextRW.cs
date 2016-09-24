@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace FileManager.Text
 {
@@ -10,7 +11,7 @@ namespace FileManager.Text
             var result = string.Empty;
             try
             {
-                result = File.ReadAllText(path);
+                result = File.ReadAllText(path, Encoding.Default);
             }
             catch
             {
@@ -26,7 +27,7 @@ namespace FileManager.Text
 
             try
             {
-                File.WriteAllText(path, text);
+                File.WriteAllText(path, text, Encoding.Unicode);
                 result = true;
             }
             catch

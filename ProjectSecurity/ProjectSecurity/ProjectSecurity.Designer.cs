@@ -31,12 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectSecurity));
             this.projectContent = new System.Windows.Forms.TabControl();
             this.tabPageEncryption = new System.Windows.Forms.TabPage();
-            this.toolStripFastMenu = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripEncryptionButton = new System.Windows.Forms.ToolStripSplitButton();
-            this.encodingButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.decodingButton = new System.Windows.Forms.ToolStripMenuItem();
             this.panelEncodDecod = new System.Windows.Forms.Panel();
             this.splitEncodDecod = new System.Windows.Forms.SplitContainer();
             this.groupBoxTextIn = new System.Windows.Forms.GroupBox();
@@ -51,12 +45,25 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sourceTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.processedTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.textToolStripMenuSaveSource = new System.Windows.Forms.ToolStripMenuItem();
+            this.textToolStripMenuSaveProcessed = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileText = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileText = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripFastMenu = new System.Windows.Forms.ToolStrip();
+            this.toolStripBtnOpen = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSplitBtnSave = new System.Windows.Forms.ToolStripSplitButton();
+            this.sourceBtnSaveSource = new System.Windows.Forms.ToolStripMenuItem();
+            this.sourceBtnSaveProcessed = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripBtnEncryption = new System.Windows.Forms.ToolStripSplitButton();
+            this.btnEncoding = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDecoding = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripBtnPrcToSrc = new System.Windows.Forms.ToolStripButton();
             this.projectContent.SuspendLayout();
             this.tabPageEncryption.SuspendLayout();
-            this.toolStripFastMenu.SuspendLayout();
             this.panelEncodDecod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitEncodDecod)).BeginInit();
             this.splitEncodDecod.Panel1.SuspendLayout();
@@ -68,6 +75,7 @@
             this.frequencyContent.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
+            this.toolStripFastMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // projectContent
@@ -78,90 +86,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.projectContent.Controls.Add(this.tabPageEncryption);
             this.projectContent.Controls.Add(this.tabPageFrequency);
-            this.projectContent.Location = new System.Drawing.Point(0, 27);
+            this.projectContent.Location = new System.Drawing.Point(0, 52);
             this.projectContent.Multiline = true;
             this.projectContent.Name = "projectContent";
             this.projectContent.SelectedIndex = 0;
-            this.projectContent.Size = new System.Drawing.Size(767, 383);
+            this.projectContent.Size = new System.Drawing.Size(760, 358);
             this.projectContent.TabIndex = 0;
+            this.projectContent.SelectedIndexChanged += new System.EventHandler(this.projectContentSelectedIndexChanged);
+            this.projectContent.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.projectContentSelecting);
             // 
             // tabPageEncryption
             // 
-            this.tabPageEncryption.Controls.Add(this.toolStripFastMenu);
             this.tabPageEncryption.Controls.Add(this.panelEncodDecod);
             this.tabPageEncryption.Location = new System.Drawing.Point(23, 4);
             this.tabPageEncryption.Name = "tabPageEncryption";
             this.tabPageEncryption.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEncryption.Size = new System.Drawing.Size(740, 375);
+            this.tabPageEncryption.Size = new System.Drawing.Size(733, 350);
             this.tabPageEncryption.TabIndex = 0;
             this.tabPageEncryption.Text = "Encryption";
             this.tabPageEncryption.UseVisualStyleBackColor = true;
-            // 
-            // toolStripFastMenu
-            // 
-            this.toolStripFastMenu.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripFastMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripSplitButton2,
-            this.toolStripEncryptionButton});
-            this.toolStripFastMenu.Location = new System.Drawing.Point(3, 3);
-            this.toolStripFastMenu.Name = "toolStripFastMenu";
-            this.toolStripFastMenu.Size = new System.Drawing.Size(734, 25);
-            this.toolStripFastMenu.TabIndex = 7;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Open";
-            // 
-            // toolStripSplitButton2
-            // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton2.DropDownButtonWidth = 15;
-            this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sourceTextToolStripMenuItem,
-            this.processedTextToolStripMenuItem});
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(36, 22);
-            this.toolStripSplitButton2.Text = "Save as...";
-            // 
-            // toolStripEncryptionButton
-            // 
-            this.toolStripEncryptionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.toolStripEncryptionButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripEncryptionButton.DropDownButtonWidth = 15;
-            this.toolStripEncryptionButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.encodingButton,
-            this.decodingButton});
-            this.toolStripEncryptionButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripEncryptionButton.Image")));
-            this.toolStripEncryptionButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripEncryptionButton.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.toolStripEncryptionButton.Name = "toolStripEncryptionButton";
-            this.toolStripEncryptionButton.Size = new System.Drawing.Size(36, 22);
-            this.toolStripEncryptionButton.Text = "Encryption";
-            // 
-            // encodingButton
-            // 
-            this.encodingButton.Image = ((System.Drawing.Image)(resources.GetObject("encodingButton.Image")));
-            this.encodingButton.Name = "encodingButton";
-            this.encodingButton.Size = new System.Drawing.Size(152, 22);
-            this.encodingButton.Text = "Encoding";
-            this.encodingButton.Click += new System.EventHandler(this.ButtonEncryptClick);
-            // 
-            // decodingButton
-            // 
-            this.decodingButton.Image = ((System.Drawing.Image)(resources.GetObject("decodingButton.Image")));
-            this.decodingButton.Name = "decodingButton";
-            this.decodingButton.Size = new System.Drawing.Size(152, 22);
-            this.decodingButton.Text = "Decoding";
-            this.decodingButton.Click += new System.EventHandler(this.ButtonEncryptClick);
             // 
             // panelEncodDecod
             // 
@@ -169,9 +112,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelEncodDecod.Controls.Add(this.splitEncodDecod);
-            this.panelEncodDecod.Location = new System.Drawing.Point(6, 31);
+            this.panelEncodDecod.Location = new System.Drawing.Point(3, 6);
             this.panelEncodDecod.Name = "panelEncodDecod";
-            this.panelEncodDecod.Size = new System.Drawing.Size(728, 335);
+            this.panelEncodDecod.Size = new System.Drawing.Size(721, 335);
             this.panelEncodDecod.TabIndex = 4;
             // 
             // splitEncodDecod
@@ -188,8 +131,8 @@
             // splitEncodDecod.Panel2
             // 
             this.splitEncodDecod.Panel2.Controls.Add(this.groupBoxTextOut);
-            this.splitEncodDecod.Size = new System.Drawing.Size(728, 335);
-            this.splitEncodDecod.SplitterDistance = 347;
+            this.splitEncodDecod.Size = new System.Drawing.Size(721, 335);
+            this.splitEncodDecod.SplitterDistance = 343;
             this.splitEncodDecod.TabIndex = 0;
             // 
             // groupBoxTextIn
@@ -199,7 +142,7 @@
             this.groupBoxTextIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxTextIn.Location = new System.Drawing.Point(0, 0);
             this.groupBoxTextIn.Name = "groupBoxTextIn";
-            this.groupBoxTextIn.Size = new System.Drawing.Size(347, 335);
+            this.groupBoxTextIn.Size = new System.Drawing.Size(343, 335);
             this.groupBoxTextIn.TabIndex = 0;
             this.groupBoxTextIn.TabStop = false;
             this.groupBoxTextIn.Text = "Source text";
@@ -214,7 +157,7 @@
             this.textBoxIn.Multiline = true;
             this.textBoxIn.Name = "textBoxIn";
             this.textBoxIn.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxIn.Size = new System.Drawing.Size(341, 313);
+            this.textBoxIn.Size = new System.Drawing.Size(337, 313);
             this.textBoxIn.TabIndex = 0;
             // 
             // groupBoxTextOut
@@ -224,7 +167,7 @@
             this.groupBoxTextOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxTextOut.Location = new System.Drawing.Point(0, 0);
             this.groupBoxTextOut.Name = "groupBoxTextOut";
-            this.groupBoxTextOut.Size = new System.Drawing.Size(377, 335);
+            this.groupBoxTextOut.Size = new System.Drawing.Size(374, 335);
             this.groupBoxTextOut.TabIndex = 0;
             this.groupBoxTextOut.TabStop = false;
             this.groupBoxTextOut.Text = "Processed text";
@@ -239,7 +182,7 @@
             this.textBoxOut.Multiline = true;
             this.textBoxOut.Name = "textBoxOut";
             this.textBoxOut.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxOut.Size = new System.Drawing.Size(371, 313);
+            this.textBoxOut.Size = new System.Drawing.Size(368, 313);
             this.textBoxOut.TabIndex = 0;
             // 
             // tabPageFrequency
@@ -248,7 +191,7 @@
             this.tabPageFrequency.Location = new System.Drawing.Point(23, 4);
             this.tabPageFrequency.Name = "tabPageFrequency";
             this.tabPageFrequency.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFrequency.Size = new System.Drawing.Size(740, 375);
+            this.tabPageFrequency.Size = new System.Drawing.Size(733, 350);
             this.tabPageFrequency.TabIndex = 1;
             this.tabPageFrequency.Text = "Frequency";
             this.tabPageFrequency.UseVisualStyleBackColor = true;
@@ -262,7 +205,7 @@
             this.frequencyContent.Location = new System.Drawing.Point(3, 3);
             this.frequencyContent.Name = "frequencyContent";
             this.frequencyContent.SelectedIndex = 0;
-            this.frequencyContent.Size = new System.Drawing.Size(734, 369);
+            this.frequencyContent.Size = new System.Drawing.Size(727, 344);
             this.frequencyContent.TabIndex = 0;
             // 
             // tabLoadText
@@ -270,7 +213,7 @@
             this.tabLoadText.Location = new System.Drawing.Point(4, 22);
             this.tabLoadText.Name = "tabLoadText";
             this.tabLoadText.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLoadText.Size = new System.Drawing.Size(726, 343);
+            this.tabLoadText.Size = new System.Drawing.Size(719, 318);
             this.tabLoadText.TabIndex = 0;
             this.tabLoadText.Text = "Text";
             this.tabLoadText.UseVisualStyleBackColor = true;
@@ -280,7 +223,7 @@
             this.tabFrequencyLit.Location = new System.Drawing.Point(4, 22);
             this.tabFrequencyLit.Name = "tabFrequencyLit";
             this.tabFrequencyLit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFrequencyLit.Size = new System.Drawing.Size(726, 343);
+            this.tabFrequencyLit.Size = new System.Drawing.Size(719, 318);
             this.tabFrequencyLit.TabIndex = 1;
             this.tabFrequencyLit.Text = "Frequency letters chart";
             this.tabFrequencyLit.UseVisualStyleBackColor = true;
@@ -290,7 +233,7 @@
             this.tabFrequencyPairsLit.Location = new System.Drawing.Point(4, 22);
             this.tabFrequencyPairsLit.Name = "tabFrequencyPairsLit";
             this.tabFrequencyPairsLit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFrequencyPairsLit.Size = new System.Drawing.Size(726, 343);
+            this.tabFrequencyPairsLit.Size = new System.Drawing.Size(719, 318);
             this.tabFrequencyPairsLit.TabIndex = 2;
             this.tabFrequencyPairsLit.Text = "Frequency pairs letters chart";
             this.tabFrequencyPairsLit.UseVisualStyleBackColor = true;
@@ -316,38 +259,176 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.toolStripMenuFile});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(760, 24);
             this.menu.TabIndex = 2;
             this.menu.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // toolStripMenuFile
             // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.toolStripMenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.toolStripMenuSave,
+            this.toolStripMenuExit});
+            this.toolStripMenuFile.Name = "toolStripMenuFile";
+            this.toolStripMenuFile.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuFile.Text = "File";
             // 
-            // sourceTextToolStripMenuItem
+            // openToolStripMenuItem
             // 
-            this.sourceTextToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sourceTextToolStripMenuItem.Image")));
-            this.sourceTextToolStripMenuItem.Name = "sourceTextToolStripMenuItem";
-            this.sourceTextToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sourceTextToolStripMenuItem.Text = "Source text";
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenText);
             // 
-            // processedTextToolStripMenuItem
+            // toolStripMenuSave
             // 
-            this.processedTextToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("processedTextToolStripMenuItem.Image")));
-            this.processedTextToolStripMenuItem.Name = "processedTextToolStripMenuItem";
-            this.processedTextToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.processedTextToolStripMenuItem.Text = "Processed text";
+            this.toolStripMenuSave.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textToolStripMenuSaveSource,
+            this.textToolStripMenuSaveProcessed});
+            this.toolStripMenuSave.Name = "toolStripMenuSave";
+            this.toolStripMenuSave.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuSave.Text = "Save";
+            // 
+            // textToolStripMenuSaveSource
+            // 
+            this.textToolStripMenuSaveSource.Name = "textToolStripMenuSaveSource";
+            this.textToolStripMenuSaveSource.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.textToolStripMenuSaveSource.Size = new System.Drawing.Size(221, 22);
+            this.textToolStripMenuSaveSource.Text = "Source text";
+            this.textToolStripMenuSaveSource.Click += new System.EventHandler(this.SaveText);
+            // 
+            // textToolStripMenuSaveProcessed
+            // 
+            this.textToolStripMenuSaveProcessed.Name = "textToolStripMenuSaveProcessed";
+            this.textToolStripMenuSaveProcessed.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.textToolStripMenuSaveProcessed.Size = new System.Drawing.Size(221, 22);
+            this.textToolStripMenuSaveProcessed.Text = "Processed text";
+            this.textToolStripMenuSaveProcessed.Click += new System.EventHandler(this.SaveText);
+            // 
+            // toolStripMenuExit
+            // 
+            this.toolStripMenuExit.Name = "toolStripMenuExit";
+            this.toolStripMenuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.toolStripMenuExit.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuExit.Text = "Exit";
+            this.toolStripMenuExit.Click += new System.EventHandler(this.toolStripMenuExitClick);
+            // 
+            // openFileText
+            // 
+            this.openFileText.FileName = "openFileText";
+            this.openFileText.Filter = "Text file|*.txt";
+            // 
+            // saveFileText
+            // 
+            this.saveFileText.Filter = "Text file|*.txt";
+            // 
+            // toolStripFastMenu
+            // 
+            this.toolStripFastMenu.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripFastMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.toolStripFastMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripFastMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBtnOpen,
+            this.toolStripSplitBtnSave,
+            this.toolStripBtnEncryption,
+            this.toolStripBtnPrcToSrc});
+            this.toolStripFastMenu.Location = new System.Drawing.Point(0, 24);
+            this.toolStripFastMenu.Name = "toolStripFastMenu";
+            this.toolStripFastMenu.Size = new System.Drawing.Size(760, 25);
+            this.toolStripFastMenu.TabIndex = 8;
+            // 
+            // toolStripBtnOpen
+            // 
+            this.toolStripBtnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnOpen.Image")));
+            this.toolStripBtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnOpen.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.toolStripBtnOpen.Name = "toolStripBtnOpen";
+            this.toolStripBtnOpen.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnOpen.Text = "Open";
+            this.toolStripBtnOpen.Click += new System.EventHandler(this.OpenText);
+            // 
+            // toolStripSplitBtnSave
+            // 
+            this.toolStripSplitBtnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitBtnSave.DropDownButtonWidth = 15;
+            this.toolStripSplitBtnSave.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sourceBtnSaveSource,
+            this.sourceBtnSaveProcessed});
+            this.toolStripSplitBtnSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitBtnSave.Image")));
+            this.toolStripSplitBtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitBtnSave.Name = "toolStripSplitBtnSave";
+            this.toolStripSplitBtnSave.Size = new System.Drawing.Size(36, 36);
+            this.toolStripSplitBtnSave.Text = "Save as...";
+            // 
+            // sourceBtnSaveSource
+            // 
+            this.sourceBtnSaveSource.Image = ((System.Drawing.Image)(resources.GetObject("sourceBtnSaveSource.Image")));
+            this.sourceBtnSaveSource.Name = "sourceBtnSaveSource";
+            this.sourceBtnSaveSource.Size = new System.Drawing.Size(149, 22);
+            this.sourceBtnSaveSource.Text = "Source text";
+            this.sourceBtnSaveSource.Click += new System.EventHandler(this.SaveText);
+            // 
+            // sourceBtnSaveProcessed
+            // 
+            this.sourceBtnSaveProcessed.Image = ((System.Drawing.Image)(resources.GetObject("sourceBtnSaveProcessed.Image")));
+            this.sourceBtnSaveProcessed.Name = "sourceBtnSaveProcessed";
+            this.sourceBtnSaveProcessed.Size = new System.Drawing.Size(149, 22);
+            this.sourceBtnSaveProcessed.Text = "Processed text";
+            this.sourceBtnSaveProcessed.Click += new System.EventHandler(this.SaveText);
+            // 
+            // toolStripBtnEncryption
+            // 
+            this.toolStripBtnEncryption.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.toolStripBtnEncryption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnEncryption.DropDownButtonWidth = 15;
+            this.toolStripBtnEncryption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnEncoding,
+            this.btnDecoding});
+            this.toolStripBtnEncryption.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnEncryption.Image")));
+            this.toolStripBtnEncryption.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnEncryption.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.toolStripBtnEncryption.Name = "toolStripBtnEncryption";
+            this.toolStripBtnEncryption.Size = new System.Drawing.Size(36, 36);
+            this.toolStripBtnEncryption.Text = "Encryption";
+            // 
+            // btnEncoding
+            // 
+            this.btnEncoding.Image = ((System.Drawing.Image)(resources.GetObject("btnEncoding.Image")));
+            this.btnEncoding.Name = "btnEncoding";
+            this.btnEncoding.Size = new System.Drawing.Size(125, 22);
+            this.btnEncoding.Text = "Encoding";
+            this.btnEncoding.Click += new System.EventHandler(this.ButtonEncryptClick);
+            // 
+            // btnDecoding
+            // 
+            this.btnDecoding.Image = ((System.Drawing.Image)(resources.GetObject("btnDecoding.Image")));
+            this.btnDecoding.Name = "btnDecoding";
+            this.btnDecoding.Size = new System.Drawing.Size(125, 22);
+            this.btnDecoding.Text = "Decoding";
+            this.btnDecoding.Click += new System.EventHandler(this.ButtonEncryptClick);
+            // 
+            // toolStripBtnPrcToSrc
+            // 
+            this.toolStripBtnPrcToSrc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnPrcToSrc.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnPrcToSrc.Image")));
+            this.toolStripBtnPrcToSrc.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnPrcToSrc.Name = "toolStripBtnPrcToSrc";
+            this.toolStripBtnPrcToSrc.Size = new System.Drawing.Size(23, 36);
+            this.toolStripBtnPrcToSrc.Text = "Move processed to source text";
+            this.toolStripBtnPrcToSrc.Click += new System.EventHandler(this.toolStripBtnPrcToSrcClick);
             // 
             // ProjectSecurity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 422);
+            this.Controls.Add(this.toolStripFastMenu);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.projectContent);
@@ -356,9 +437,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.projectContent.ResumeLayout(false);
             this.tabPageEncryption.ResumeLayout(false);
-            this.tabPageEncryption.PerformLayout();
-            this.toolStripFastMenu.ResumeLayout(false);
-            this.toolStripFastMenu.PerformLayout();
             this.panelEncodDecod.ResumeLayout(false);
             this.splitEncodDecod.Panel1.ResumeLayout(false);
             this.splitEncodDecod.Panel2.ResumeLayout(false);
@@ -374,6 +452,8 @@
             this.statusStrip.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.toolStripFastMenu.ResumeLayout(false);
+            this.toolStripFastMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,20 +472,28 @@
         private System.Windows.Forms.TabPage tabPageFrequency;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuFile;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.TabControl frequencyContent;
         private System.Windows.Forms.TabPage tabLoadText;
         private System.Windows.Forms.TabPage tabFrequencyLit;
         private System.Windows.Forms.TabPage tabFrequencyPairsLit;
+        private System.Windows.Forms.OpenFileDialog openFileText;
+        private System.Windows.Forms.SaveFileDialog saveFileText;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSave;
+        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuSaveSource;
+        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuSaveProcessed;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuExit;
         private System.Windows.Forms.ToolStrip toolStripFastMenu;
-        private System.Windows.Forms.ToolStripSplitButton toolStripEncryptionButton;
-        private System.Windows.Forms.ToolStripMenuItem encodingButton;
-        private System.Windows.Forms.ToolStripMenuItem decodingButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
-        private System.Windows.Forms.ToolStripMenuItem sourceTextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem processedTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripBtnOpen;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitBtnSave;
+        private System.Windows.Forms.ToolStripMenuItem sourceBtnSaveSource;
+        private System.Windows.Forms.ToolStripMenuItem sourceBtnSaveProcessed;
+        private System.Windows.Forms.ToolStripSplitButton toolStripBtnEncryption;
+        private System.Windows.Forms.ToolStripMenuItem btnEncoding;
+        private System.Windows.Forms.ToolStripMenuItem btnDecoding;
+        private System.Windows.Forms.ToolStripButton toolStripBtnPrcToSrc;
     }
 }
 

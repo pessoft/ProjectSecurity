@@ -11,4 +11,10 @@ namespace View
         Encoding,
         Decoding 
     }
+
+    public enum TypeText
+    {
+        Source,
+        Processed
+    }
 }

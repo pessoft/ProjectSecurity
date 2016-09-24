@@ -17,20 +17,25 @@ namespace ProjectSecurity
         public ProjectSecurity()
         {
             InitializeComponent();
-            InitializeTagBtn();
+            InitializeComponentPartial();
         }
 
-        private void InitializeTagBtn()
+        private void InitializeComponentPartial()
         {
             
-            encodingButton.Tag = EncryptionEnum.Encoding;
-            decodingButton.Tag = EncryptionEnum.Decoding;
+            btnEncoding.Tag = EncryptionEnum.Encoding;
+            btnDecoding.Tag = EncryptionEnum.Decoding;
+            sourceBtnSaveSource.Tag = TypeText.Source;
+            sourceBtnSaveProcessed.Tag = TypeText.Processed;
+            textToolStripMenuSaveSource.Tag = TypeText.Source;
+            textToolStripMenuSaveProcessed.Tag = TypeText.Processed; ;
+            activeTxtBox = textBoxIn;
         }
 
-        private string textSavePath = String.Empty, textOpenFile = string.Empty;
         public event EventHandler<ButtonClickEncodDecodEventArgs> ButtonEncodDecodClick = delegate{};
         public event EventHandler<SavingTextEventArgs> SavingTextForFile = delegate { };
         public event EventHandler<OpenFileTextEventArgs> OpenTextFromFile = delegate { };
+        private TextBox activeTxtBox;
 
         public void SetOutText(string text)
         {
@@ -39,7 +44,7 @@ namespace ProjectSecurity
 
         public void SetInText(string text)
         {
-            textBoxIn.Text = text;
+            activeTxtBox.Text = text;
         }
 
         protected void OnButtonEncodDecodClick(ButtonClickEncodDecodEventArgs e)
@@ -67,16 +72,75 @@ namespace ProjectSecurity
 
         private void SaveText(object sender, EventArgs e)
         {
-            string text = string.Empty;
-            OnSavingTextForFile(new SavingTextEventArgs(textSavePath, text));
+            if (FileDialogShow(saveFileText) == DialogResult.OK)
+            {
+                var typeText = (TypeText)(sender as ToolStripMenuItem).Tag;
+                switch (typeText)
+                {
+                    case TypeText.Source:
+                        OnSavingTextForFile(new SavingTextEventArgs(saveFileText.FileName, activeTxtBox.Text));
+                        break;
+                    case TypeText.Processed:
+                        OnSavingTextForFile(new SavingTextEventArgs(saveFileText.FileName, textBoxOut.Text));
+                        break;
+                }
+                
+            }
+            
         }
 
         private void OpenText(object sender, EventArgs e)
         {
-            OnOpenTextFromFile(new OpenFileTextEventArgs(textOpenFile));
+            if (FileDialogShow(openFileText) == DialogResult.OK)
+                OnOpenTextFromFile(new OpenFileTextEventArgs(openFileText.FileName));
         }
 
+        private DialogResult FileDialogShow(FileDialog sender)
+        {
+            return sender.ShowDialog();
+        }
 
+        private void projectContentSelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (projectContent.SelectedIndex)
+            {
+                case 0:
+                    activeTxtBox = textBoxIn;
+                    break;
+                case 1:
+                    activeTxtBox = textBoxOut;
+                    break;
+            }
+        }
 
+        private void toolStripBtnPrcToSrcClick(object sender, EventArgs e)
+        {
+            if (textBoxOut.TextLength != 0)
+                textBoxIn.Text = textBoxOut.Text;
+        }
+
+        private void toolStripMenuExitClick(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void projectContentSelecting(object sender, TabControlCancelEventArgs e)
+        {
+            switch (e.TabPageIndex)
+            {
+                case 0:
+                    toolStripBtnEncryption.Visible = true;
+                    toolStripBtnPrcToSrc.Visible = true;
+                    sourceBtnSaveProcessed.Visible = true;
+                    textToolStripMenuSaveProcessed.Visible = true;
+                    break;
+                case 1:
+                    toolStripBtnEncryption.Visible = false;
+                    toolStripBtnPrcToSrc.Visible = false;
+                    sourceBtnSaveProcessed.Visible = false;
+                    textToolStripMenuSaveProcessed.Visible = false;
+                    break;
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EncryptionEnum.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="EventArguments\ButtonClickEncodDecodEventArgs.cs" />
     <Compile Include="EventArguments\OpenFileTextEventArgs.cs" />
     <Compile Include="EventArguments\SavingTextEventArgs.cs" />
