@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 using View;
 using View.EventArguments;
 using Security.Encryption;
+using Security;
 using FileManager;
 namespace Presenter
 {
     public class Presenter
     {
         private IView view;
-        private IEncryption encryption;
+        private ISecurity securityManager;
         private IFileManger fileManager;
 
-        public Presenter(IView view, IEncryption encryption, IFileManger fileManager)
+        public Presenter(IView view, ISecurity securityManager, IFileManger fileManager)
         {
             this.view = view;
-            this.encryption = encryption;
+            this.securityManager = securityManager;
             this.fileManager = fileManager;
             Init();
         }
@@ -52,10 +53,10 @@ namespace Presenter
             switch (processType)
             {
                 case EncryptionEnum.Encoding:
-                    result = encryption.Encoding(text);
+                    result = securityManager.CeasarCoder().Encoding(text);
                     break;
                 case EncryptionEnum.Decoding:
-                    result = encryption.Decoding(text);
+                    result = securityManager.CeasarCoder().Decoding(text);
                     break;
             }
 

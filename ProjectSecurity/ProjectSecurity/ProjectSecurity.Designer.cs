@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectSecurity));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.projectContent = new System.Windows.Forms.TabControl();
             this.tabPageEncryption = new System.Windows.Forms.TabPage();
             this.panelEncodDecod = new System.Windows.Forms.Panel();
@@ -62,6 +65,12 @@
             this.btnEncoding = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoding = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnPrcToSrc = new System.Windows.Forms.ToolStripButton();
+            this.frequencySourceText = new System.Windows.Forms.TextBox();
+            this.splitFrequencyLettersChr = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.projectContent.SuspendLayout();
             this.tabPageEncryption.SuspendLayout();
             this.panelEncodDecod.SuspendLayout();
@@ -73,9 +82,19 @@
             this.groupBoxTextOut.SuspendLayout();
             this.tabPageFrequency.SuspendLayout();
             this.frequencyContent.SuspendLayout();
+            this.tabLoadText.SuspendLayout();
+            this.tabFrequencyLit.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.toolStripFastMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitFrequencyLettersChr)).BeginInit();
+            this.splitFrequencyLettersChr.Panel1.SuspendLayout();
+            this.splitFrequencyLettersChr.Panel2.SuspendLayout();
+            this.splitFrequencyLettersChr.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // projectContent
@@ -210,16 +229,18 @@
             // 
             // tabLoadText
             // 
+            this.tabLoadText.Controls.Add(this.frequencySourceText);
             this.tabLoadText.Location = new System.Drawing.Point(4, 22);
             this.tabLoadText.Name = "tabLoadText";
             this.tabLoadText.Padding = new System.Windows.Forms.Padding(3);
             this.tabLoadText.Size = new System.Drawing.Size(719, 318);
             this.tabLoadText.TabIndex = 0;
-            this.tabLoadText.Text = "Text";
+            this.tabLoadText.Text = "Source text";
             this.tabLoadText.UseVisualStyleBackColor = true;
             // 
             // tabFrequencyLit
             // 
+            this.tabFrequencyLit.Controls.Add(this.splitFrequencyLettersChr);
             this.tabFrequencyLit.Location = new System.Drawing.Point(4, 22);
             this.tabFrequencyLit.Name = "tabFrequencyLit";
             this.tabFrequencyLit.Padding = new System.Windows.Forms.Padding(3);
@@ -280,7 +301,7 @@
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenText);
             // 
@@ -290,7 +311,7 @@
             this.textToolStripMenuSaveSource,
             this.textToolStripMenuSaveProcessed});
             this.toolStripMenuSave.Name = "toolStripMenuSave";
-            this.toolStripMenuSave.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuSave.Size = new System.Drawing.Size(146, 22);
             this.toolStripMenuSave.Text = "Save";
             // 
             // textToolStripMenuSaveSource
@@ -314,7 +335,7 @@
             // 
             this.toolStripMenuExit.Name = "toolStripMenuExit";
             this.toolStripMenuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.toolStripMenuExit.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuExit.Size = new System.Drawing.Size(146, 22);
             this.toolStripMenuExit.Text = "Exit";
             this.toolStripMenuExit.Click += new System.EventHandler(this.toolStripMenuExitClick);
             // 
@@ -363,7 +384,7 @@
             this.toolStripSplitBtnSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitBtnSave.Image")));
             this.toolStripSplitBtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitBtnSave.Name = "toolStripSplitBtnSave";
-            this.toolStripSplitBtnSave.Size = new System.Drawing.Size(36, 36);
+            this.toolStripSplitBtnSave.Size = new System.Drawing.Size(36, 22);
             this.toolStripSplitBtnSave.Text = "Save as...";
             // 
             // sourceBtnSaveSource
@@ -394,7 +415,7 @@
             this.toolStripBtnEncryption.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnEncryption.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
             this.toolStripBtnEncryption.Name = "toolStripBtnEncryption";
-            this.toolStripBtnEncryption.Size = new System.Drawing.Size(36, 36);
+            this.toolStripBtnEncryption.Size = new System.Drawing.Size(36, 22);
             this.toolStripBtnEncryption.Text = "Encryption";
             // 
             // btnEncoding
@@ -419,9 +440,86 @@
             this.toolStripBtnPrcToSrc.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnPrcToSrc.Image")));
             this.toolStripBtnPrcToSrc.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnPrcToSrc.Name = "toolStripBtnPrcToSrc";
-            this.toolStripBtnPrcToSrc.Size = new System.Drawing.Size(23, 36);
+            this.toolStripBtnPrcToSrc.Size = new System.Drawing.Size(23, 22);
             this.toolStripBtnPrcToSrc.Text = "Move processed to source text";
             this.toolStripBtnPrcToSrc.Click += new System.EventHandler(this.toolStripBtnPrcToSrcClick);
+            // 
+            // frequencySourceText
+            // 
+            this.frequencySourceText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frequencySourceText.Location = new System.Drawing.Point(3, 3);
+            this.frequencySourceText.MaxLength = 999999999;
+            this.frequencySourceText.Multiline = true;
+            this.frequencySourceText.Name = "frequencySourceText";
+            this.frequencySourceText.Size = new System.Drawing.Size(713, 312);
+            this.frequencySourceText.TabIndex = 0;
+            // 
+            // splitFrequencyLettersChr
+            // 
+            this.splitFrequencyLettersChr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitFrequencyLettersChr.Location = new System.Drawing.Point(3, 3);
+            this.splitFrequencyLettersChr.Name = "splitFrequencyLettersChr";
+            this.splitFrequencyLettersChr.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitFrequencyLettersChr.Panel1
+            // 
+            this.splitFrequencyLettersChr.Panel1.Controls.Add(this.groupBox1);
+            // 
+            // splitFrequencyLettersChr.Panel2
+            // 
+            this.splitFrequencyLettersChr.Panel2.Controls.Add(this.groupBox2);
+            this.splitFrequencyLettersChr.Size = new System.Drawing.Size(713, 312);
+            this.splitFrequencyLettersChr.SplitterDistance = 132;
+            this.splitFrequencyLettersChr.SplitterWidth = 10;
+            this.splitFrequencyLettersChr.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(713, 132);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Frequency letters";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.chart1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(713, 170);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Frequency chart letters";
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(3, 16);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(707, 151);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(707, 113);
+            this.dataGridView1.TabIndex = 0;
             // 
             // ProjectSecurity
             // 
@@ -448,12 +546,23 @@
             this.groupBoxTextOut.PerformLayout();
             this.tabPageFrequency.ResumeLayout(false);
             this.frequencyContent.ResumeLayout(false);
+            this.tabLoadText.ResumeLayout(false);
+            this.tabLoadText.PerformLayout();
+            this.tabFrequencyLit.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.toolStripFastMenu.ResumeLayout(false);
             this.toolStripFastMenu.PerformLayout();
+            this.splitFrequencyLettersChr.Panel1.ResumeLayout(false);
+            this.splitFrequencyLettersChr.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitFrequencyLettersChr)).EndInit();
+            this.splitFrequencyLettersChr.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,6 +603,12 @@
         private System.Windows.Forms.ToolStripMenuItem btnEncoding;
         private System.Windows.Forms.ToolStripMenuItem btnDecoding;
         private System.Windows.Forms.ToolStripButton toolStripBtnPrcToSrc;
+        private System.Windows.Forms.TextBox frequencySourceText;
+        private System.Windows.Forms.SplitContainer splitFrequencyLettersChr;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

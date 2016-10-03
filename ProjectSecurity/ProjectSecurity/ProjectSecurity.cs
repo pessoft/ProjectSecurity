@@ -108,7 +108,7 @@ namespace ProjectSecurity
                     activeTxtBox = textBoxIn;
                     break;
                 case 1:
-                    activeTxtBox = textBoxOut;
+                    activeTxtBox = frequencySourceText;
                     break;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using Security.Encryption.SymmetricEncryption;
+using Security;
+
 namespace ProjectSecurity
 {
     static class Program
@@ -14,8 +15,7 @@ namespace ProjectSecurity
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var projectSecurity = new ProjectSecurity();
-            var encryption = new CaesarCode();
-            Presenter.Presenter presenter = new Presenter.Presenter(projectSecurity, encryption, new FileManager.FileManager());
+            Presenter.Presenter presenter = new Presenter.Presenter(projectSecurity, new SecurityManager(), new FileManager.FileManager());
             Application.Run(projectSecurity);
         }
     }

@@ -9,9 +9,9 @@ namespace Security.Helpers
 {
     public class Alphabet
     {
-        private static Dictionary<char, int> dataChar = new Dictionary<char, int>();
-        private static int numberChr = 0;
-        public static Dictionary<char, int> GetAlphabet()
+        private  Dictionary<char, int> dataChar = new Dictionary<char, int>();
+        private  int numberChr = 0;
+        public  Dictionary<char, int> GetAlphabet()
         {
             char chrLowA='\0', chrUpA='\0';
             int countAlph = 0;
@@ -41,7 +41,7 @@ namespace Security.Helpers
         }
 
 
-        private static void GetDigit()
+        private  void GetDigit()
         {
             for (int i = 0; i < 188; ++i)
             {
