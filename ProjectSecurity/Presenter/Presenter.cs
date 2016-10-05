@@ -7,6 +7,7 @@ using View;
 using View.EventArguments;
 using Security.Encryption;
 using Security;
+using Security.Helpers;
 using FileManager;
 namespace Presenter
 {
@@ -29,6 +30,13 @@ namespace Presenter
             view.ButtonEncodDecodClick += ViewButtonClick;
             view.OpenTextFromFile += ViewOpenTextFromFile;
             view.SavingTextForFile += ViewSavingTextForFile;
+            view.CalcFrequenceLetter += ViewCalcFrequenceLetter;
+        }
+
+        private void ViewCalcFrequenceLetter(object sender, FrequencyEventArgs e)
+        {
+            IFrequency freq = securityManager.CalcFreq(e.SourceText);
+            view.SetFrequencyChart(freq.ConverToChart(), FrequencyTypeTask.Letter);
         }
 
         private void ViewSavingTextForFile(object sender, SavingTextEventArgs e)

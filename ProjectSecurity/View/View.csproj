@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Enums.cs" />
     <Compile Include="EventArguments\ButtonClickEncodDecodEventArgs.cs" />
+    <Compile Include="EventArguments\FrequencyEventArgs.cs" />
     <Compile Include="EventArguments\OpenFileTextEventArgs.cs" />
     <Compile Include="EventArguments\SavingTextEventArgs.cs" />
     <Compile Include="IView.cs" />

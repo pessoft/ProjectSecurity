@@ -11,7 +11,12 @@ namespace Security.Helpers
         public static Chart ConverToChart(this IFrequency source)
         {
             var result = new Chart();
-            result.Series[0].ChartType = SeriesChartType.Line;
+            result.ChartAreas.Add(new ChartArea());
+            result.Series.Add(new Series());
+
+            result.Series[0].ChartType = SeriesChartType.Column;
+            
+           //result.ChartAreas[0].AxisX = new Axis();
             result.ChartAreas[0].AxisX.Minimum = 0;
             result.ChartAreas[0].AxisX.Interval = 1;
             result.ChartAreas[0].AxisX.IsLabelAutoFit = false;
@@ -22,7 +27,7 @@ namespace Security.Helpers
             foreach (var let in source.GetLetterFreq().OrderBy(p=>p.Key))
             {
                 result.Series[0].Points.AddXY(++numb, let.Value);
-                result.ChartAreas[0].AxisX.CustomLabels.Add(numb, numb + 0.5, let.Key);
+                result.ChartAreas[0].AxisX.CustomLabels.Add(numb, numb+0.01, let.Key);
             }
             return result;
         }

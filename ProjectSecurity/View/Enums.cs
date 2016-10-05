@@ -17,4 +17,10 @@ namespace View
         Source,
         Processed
     }
+
+    public enum FrequencyTypeTask
+    {
+        Letter,
+        PairLetter
+    }
 }

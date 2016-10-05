@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectSecurity));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectSecurity));
             this.projectContent = new System.Windows.Forms.TabControl();
             this.tabPageEncryption = new System.Windows.Forms.TabPage();
             this.panelEncodDecod = new System.Windows.Forms.Panel();
@@ -43,7 +43,13 @@
             this.tabPageFrequency = new System.Windows.Forms.TabPage();
             this.frequencyContent = new System.Windows.Forms.TabControl();
             this.tabLoadText = new System.Windows.Forms.TabPage();
+            this.frequencySourceText = new System.Windows.Forms.TextBox();
             this.tabFrequencyLit = new System.Windows.Forms.TabPage();
+            this.splitFrequencyLettersChr = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chartFrqeLetters = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabFrequencyPairsLit = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -65,12 +71,7 @@
             this.btnEncoding = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoding = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnPrcToSrc = new System.Windows.Forms.ToolStripButton();
-            this.frequencySourceText = new System.Windows.Forms.TextBox();
-            this.splitFrequencyLettersChr = new System.Windows.Forms.SplitContainer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.toolStripBtnCakcFreqLetters = new System.Windows.Forms.ToolStripButton();
             this.projectContent.SuspendLayout();
             this.tabPageEncryption.SuspendLayout();
             this.panelEncodDecod.SuspendLayout();
@@ -84,17 +85,17 @@
             this.frequencyContent.SuspendLayout();
             this.tabLoadText.SuspendLayout();
             this.tabFrequencyLit.SuspendLayout();
-            this.statusStrip.SuspendLayout();
-            this.menu.SuspendLayout();
-            this.toolStripFastMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitFrequencyLettersChr)).BeginInit();
             this.splitFrequencyLettersChr.Panel1.SuspendLayout();
             this.splitFrequencyLettersChr.Panel2.SuspendLayout();
             this.splitFrequencyLettersChr.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFrqeLetters)).BeginInit();
+            this.statusStrip.SuspendLayout();
+            this.menu.SuspendLayout();
+            this.toolStripFastMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // projectContent
@@ -226,6 +227,7 @@
             this.frequencyContent.SelectedIndex = 0;
             this.frequencyContent.Size = new System.Drawing.Size(727, 344);
             this.frequencyContent.TabIndex = 0;
+            this.frequencyContent.SelectedIndexChanged += new System.EventHandler(this.frequencyContent_SelectedIndexChanged);
             // 
             // tabLoadText
             // 
@@ -238,6 +240,16 @@
             this.tabLoadText.Text = "Source text";
             this.tabLoadText.UseVisualStyleBackColor = true;
             // 
+            // frequencySourceText
+            // 
+            this.frequencySourceText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frequencySourceText.Location = new System.Drawing.Point(3, 3);
+            this.frequencySourceText.MaxLength = 999999999;
+            this.frequencySourceText.Multiline = true;
+            this.frequencySourceText.Name = "frequencySourceText";
+            this.frequencySourceText.Size = new System.Drawing.Size(713, 312);
+            this.frequencySourceText.TabIndex = 0;
+            // 
             // tabFrequencyLit
             // 
             this.tabFrequencyLit.Controls.Add(this.splitFrequencyLettersChr);
@@ -248,6 +260,74 @@
             this.tabFrequencyLit.TabIndex = 1;
             this.tabFrequencyLit.Text = "Frequency letters chart";
             this.tabFrequencyLit.UseVisualStyleBackColor = true;
+            // 
+            // splitFrequencyLettersChr
+            // 
+            this.splitFrequencyLettersChr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitFrequencyLettersChr.Location = new System.Drawing.Point(3, 3);
+            this.splitFrequencyLettersChr.Name = "splitFrequencyLettersChr";
+            this.splitFrequencyLettersChr.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitFrequencyLettersChr.Panel1
+            // 
+            this.splitFrequencyLettersChr.Panel1.Controls.Add(this.groupBox1);
+            // 
+            // splitFrequencyLettersChr.Panel2
+            // 
+            this.splitFrequencyLettersChr.Panel2.Controls.Add(this.groupBox2);
+            this.splitFrequencyLettersChr.Size = new System.Drawing.Size(713, 312);
+            this.splitFrequencyLettersChr.SplitterDistance = 132;
+            this.splitFrequencyLettersChr.SplitterWidth = 10;
+            this.splitFrequencyLettersChr.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(713, 132);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Frequency letters";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(707, 113);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.chartFrqeLetters);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(713, 170);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Frequency chart letters";
+            // 
+            // chartFrqeLetters
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartFrqeLetters.ChartAreas.Add(chartArea1);
+            this.chartFrqeLetters.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chartFrqeLetters.Legends.Add(legend1);
+            this.chartFrqeLetters.Location = new System.Drawing.Point(3, 16);
+            this.chartFrqeLetters.Name = "chartFrqeLetters";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartFrqeLetters.Series.Add(series1);
+            this.chartFrqeLetters.Size = new System.Drawing.Size(707, 151);
+            this.chartFrqeLetters.TabIndex = 0;
+            this.chartFrqeLetters.Text = "chart1";
+            this.chartFrqeLetters.Click += new System.EventHandler(this.chartFrqeLetters_Click);
             // 
             // tabFrequencyPairsLit
             // 
@@ -357,7 +437,8 @@
             this.toolStripBtnOpen,
             this.toolStripSplitBtnSave,
             this.toolStripBtnEncryption,
-            this.toolStripBtnPrcToSrc});
+            this.toolStripBtnPrcToSrc,
+            this.toolStripBtnCakcFreqLetters});
             this.toolStripFastMenu.Location = new System.Drawing.Point(0, 24);
             this.toolStripFastMenu.Name = "toolStripFastMenu";
             this.toolStripFastMenu.Size = new System.Drawing.Size(760, 25);
@@ -444,82 +525,15 @@
             this.toolStripBtnPrcToSrc.Text = "Move processed to source text";
             this.toolStripBtnPrcToSrc.Click += new System.EventHandler(this.toolStripBtnPrcToSrcClick);
             // 
-            // frequencySourceText
+            // toolStripBtnCakcFreqLetters
             // 
-            this.frequencySourceText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.frequencySourceText.Location = new System.Drawing.Point(3, 3);
-            this.frequencySourceText.MaxLength = 999999999;
-            this.frequencySourceText.Multiline = true;
-            this.frequencySourceText.Name = "frequencySourceText";
-            this.frequencySourceText.Size = new System.Drawing.Size(713, 312);
-            this.frequencySourceText.TabIndex = 0;
-            // 
-            // splitFrequencyLettersChr
-            // 
-            this.splitFrequencyLettersChr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitFrequencyLettersChr.Location = new System.Drawing.Point(3, 3);
-            this.splitFrequencyLettersChr.Name = "splitFrequencyLettersChr";
-            this.splitFrequencyLettersChr.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitFrequencyLettersChr.Panel1
-            // 
-            this.splitFrequencyLettersChr.Panel1.Controls.Add(this.groupBox1);
-            // 
-            // splitFrequencyLettersChr.Panel2
-            // 
-            this.splitFrequencyLettersChr.Panel2.Controls.Add(this.groupBox2);
-            this.splitFrequencyLettersChr.Size = new System.Drawing.Size(713, 312);
-            this.splitFrequencyLettersChr.SplitterDistance = 132;
-            this.splitFrequencyLettersChr.SplitterWidth = 10;
-            this.splitFrequencyLettersChr.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(713, 132);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Frequency letters";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.chart1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(713, 170);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Frequency chart letters";
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 16);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(707, 151);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(707, 113);
-            this.dataGridView1.TabIndex = 0;
+            this.toolStripBtnCakcFreqLetters.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnCakcFreqLetters.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnCakcFreqLetters.Image")));
+            this.toolStripBtnCakcFreqLetters.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnCakcFreqLetters.Name = "toolStripBtnCakcFreqLetters";
+            this.toolStripBtnCakcFreqLetters.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnCakcFreqLetters.Text = "Calculate frequency letter";
+            this.toolStripBtnCakcFreqLetters.Click += new System.EventHandler(this.toolStripBtnCakcFreqLettersClick);
             // 
             // ProjectSecurity
             // 
@@ -549,20 +563,20 @@
             this.tabLoadText.ResumeLayout(false);
             this.tabLoadText.PerformLayout();
             this.tabFrequencyLit.ResumeLayout(false);
+            this.splitFrequencyLettersChr.Panel1.ResumeLayout(false);
+            this.splitFrequencyLettersChr.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitFrequencyLettersChr)).EndInit();
+            this.splitFrequencyLettersChr.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartFrqeLetters)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.toolStripFastMenu.ResumeLayout(false);
             this.toolStripFastMenu.PerformLayout();
-            this.splitFrequencyLettersChr.Panel1.ResumeLayout(false);
-            this.splitFrequencyLettersChr.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitFrequencyLettersChr)).EndInit();
-            this.splitFrequencyLettersChr.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,7 +622,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ToolStripButton toolStripBtnCakcFreqLetters;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartFrqeLetters;
     }
 }
 

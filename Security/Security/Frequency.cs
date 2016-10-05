@@ -13,16 +13,16 @@ namespace Security
 
         public Frequency(string sourceText)
         {
-            var sbTmp = new StringBuilder(sourceText.Trim());
+            var sbTmp = new StringBuilder();
             
             foreach (var chr in sourceText)
             {
                 if (char.IsLetter(chr))
                     sbTmp.Append(chr);
-
-                text = sbTmp.ToString();
-                lengthLetter = sbTmp.Length;
+                
             }
+            text = sbTmp.ToString();
+            lengthLetter = sbTmp.Length;
         }
 
         public Dictionary<string, double> GetLetterFreq()
@@ -39,7 +39,8 @@ namespace Security
                         result.Add(chr.ToString(), 1);
                 }
 
-                foreach (var key in result.Keys)
+                var keys = result.Keys.ToList();
+                foreach (var key in keys)
                 {
                     result[key] /= lengthLetter;
                 }
