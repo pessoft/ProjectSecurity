@@ -37,6 +37,9 @@ namespace Presenter
         {
             IFrequency freq = securityManager.CalcFreq(e.SourceText);
             view.SetFrequencyChart(freq.ConverToChart(), FrequencyTypeTask.Letter);
+            view.SetFrequencyDataGrid(freq.ConverToDataGridView(), FrequencyTypeTask.Letter);
+            view.SetFrequencyChart(freq.ConverToChart(true), FrequencyTypeTask.PairLetter);
+            view.SetFrequencyDataGrid(freq.ConverToDataGridView(true), FrequencyTypeTask.PairLetter);
         }
 
         private void ViewSavingTextForFile(object sender, SavingTextEventArgs e)

@@ -64,7 +64,8 @@ namespace Security
                         result.Add(key, 1);
                 }
 
-                foreach (var key in result.Keys)
+                var keys = result.Keys.ToList();
+                foreach (var key in keys)
                 {
                     result[key] /= lengthLetter-1;
                 }

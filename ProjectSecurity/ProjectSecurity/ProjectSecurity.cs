@@ -144,12 +144,14 @@ namespace ProjectSecurity
                     toolStripBtnPrcToSrc.Visible = true;
                     sourceBtnSaveProcessed.Visible = true;
                     textToolStripMenuSaveProcessed.Visible = true;
+                    toolStripBtnCalcFreqLetters.Visible = false;
                     break;
                 case 1:
                     toolStripBtnEncryption.Visible = false;
                     toolStripBtnPrcToSrc.Visible = false;
                     sourceBtnSaveProcessed.Visible = false;
                     textToolStripMenuSaveProcessed.Visible = false;
+                    toolStripBtnCalcFreqLetters.Visible = true;
                     break;
             }
         }
@@ -168,46 +170,44 @@ namespace ProjectSecurity
                    // chartFrqeLetters.Parent = groupBox2;
                     break;
                 case FrequencyTypeTask.PairLetter:
+                    chartFrqePairLetters.ChartAreas.Clear(); ;
+                    chartFrqePairLetters.Series.Clear();
+                    chartFrqePairLetters.Legends.Clear();
+                    chartFrqePairLetters.ChartAreas.Add(chart.ChartAreas[0]);
+
+                    chartFrqePairLetters.Series.Add(chart.Series[0]);
                     break;
             }
         }
 
-        private void toolStripBtnCakcFreqLettersClick(object sender, EventArgs e)
+        private void toolStripBtnCalcFreqLettersClick(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(activeTxtBox.Text))
                 OnCalcFrequenceLetter(new FrequencyEventArgs(activeTxtBox.Text));
         }
 
-        private void frequencyContent_SelectedIndexChanged(object sender, EventArgs e)
+        public void SetFrequencyDataGrid(DataGridView data, FrequencyTypeTask freqTypeTask)
         {
-            chartFrqeLetters.Invalidate();
-        }
+            switch (freqTypeTask)
+            {
+                case FrequencyTypeTask.Letter:
 
-        private void chartFrqeLetters_Click(object sender, EventArgs e)
-        {
-            //var ch = new Chart();
-            //ch.ChartAreas.Add(new ChartArea());
-            //ch.Series.Add(new Series());
-            //ch.Series[0].ChartType = SeriesChartType.Line;
-            ////chartFrqeLetters.ChartAreas[0].AxisX.CustomLabels.Add(0.0, 0.1, "a");
-            ////chartFrqeLetters.ChartAreas[0].AxisX.CustomLabels.Add(1.0, 1.1, "b");
-            ////chartFrqeLetters.ChartAreas[0].AxisX.CustomLabels.Add(2.0, 2.2, "c");
-            ////chartFrqeLetters.ChartAreas[0].AxisX.Crossing = 0;
-            //ch.ChartAreas[0].AxisX.Minimum = 0;
-            //ch.ChartAreas[0].AxisX.Interval = 1;
-            //ch.ChartAreas[0].AxisX.IsLabelAutoFit = false;
-            //ch.ChartAreas[0].AxisX.LabelAutoFitMinFontSize = 9;
-            //ch.ChartAreas[0].AxisX.TextOrientation = TextOrientation.Horizontal;
-            //for (double i = 0; i < 32; ++i)
-            //{
-            //    ch.Series[0].Points.AddXY(i, i);
-            //    var lit = i == 6 ? 33 : i;
-            //    ch.ChartAreas[0].AxisX.CustomLabels.Add(i, i + 0.5, ((char)('а' + lit)).ToString());
-
-            //}
-            //ch.Parent = groupBox2;
-            //chartFrqeLetters = ch;
-            //chartFrqeLetters.Invalidate();
+                    data.Parent = dataGridViewFreqLetter.Parent;
+                    data.Name = dataGridViewFreqLetter.Name;
+                    data.Parent.Controls.Remove(dataGridViewFreqLetter);
+                    dataGridViewFreqLetter = data;
+                    dataGridViewFreqLetter.Parent.Controls.Add(dataGridViewFreqLetter);
+                    //dataGridViewFreqLetter = data;
+                    //dataGridViewFreqLetter.Parent.Controls.Add(dataGridViewFreqLetter);
+                    break;
+                case FrequencyTypeTask.PairLetter:
+                    data.Parent = dataGridViewFreqPairLetter.Parent;
+                    data.Name = dataGridViewFreqPairLetter.Name;
+                    data.Parent.Controls.Remove(dataGridViewFreqPairLetter);
+                    dataGridViewFreqPairLetter = data;
+                    dataGridViewFreqPairLetter.Parent.Controls.Add(dataGridViewFreqPairLetter);
+                    break;
+            }
         }
     }
 }

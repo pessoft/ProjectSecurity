@@ -1,6 +1,7 @@
 ﻿using System;
 using View.EventArguments;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Forms;
 
 namespace View
 {
@@ -13,5 +14,6 @@ namespace View
         void SetOutText(string text);
         void SetInText(string text);
         void SetFrequencyChart(Chart chart, FrequencyTypeTask freqTypeTask);
+        void SetFrequencyDataGrid(DataGridView data, FrequencyTypeTask freqTypeTask);
     }
 }
