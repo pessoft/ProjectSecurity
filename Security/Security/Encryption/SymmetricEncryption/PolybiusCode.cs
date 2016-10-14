@@ -20,9 +20,9 @@ namespace Security.Encryption.SymmetricEncryption
     public class PolybiusCode : IEncryption
     {
         private string passwordKey;
-        private Dictionary<int, LetterCoord> matrix;
+        private Dictionary<LetterCoord, int> matrix;
+        private Dictionary<int, LetterCoord> matrixLettr;
 
-        
         public PolybiusCode(string passwordKey)
         {
             this.passwordKey = passwordKey;
@@ -31,7 +31,8 @@ namespace Security.Encryption.SymmetricEncryption
 
         private void CreateMatrix()
         {
-            matrix = new Dictionary<int, LetterCoord>();
+            matrix = new Dictionary<LetterCoord, int>();
+            matrixLettr = new Dictionary<int, LetterCoord>();
             var size = (int)Math.Sqrt(char.MaxValue);
             var sbPasswordKey = new StringBuilder(passwordKey);
             var numberChr = 0;
@@ -41,23 +42,25 @@ namespace Security.Encryption.SymmetricEncryption
                 {
                     if (sbPasswordKey.Length > 0)
                     {
-                        int chr = sbPasswordKey[0];
-                        if (!matrix.ContainsKey(chr))
+                        if (!matrixLettr.ContainsKey(sbPasswordKey[0]))
                         {
-                            matrix.Add(sbPasswordKey[0], new LetterCoord(i, j));
+                            matrixLettr.Add(sbPasswordKey[0], new LetterCoord(i, j));
+                            matrix.Add(new LetterCoord(i, j), sbPasswordKey[0]);
                         }
-                        
+
                         sbPasswordKey.Remove(0, 1);
                     }
                     else
                     {
-                        int chr = numberChr;
-                        while (matrix.ContainsKey(chr))
+                        char chr = (char)numberChr;
+                        while (matrixLettr.ContainsKey(chr))
                         {
-                            chr = ++numberChr;
+                            chr = (char)++numberChr;
                         }
 
-                        matrix.Add(numberChr, new LetterCoord(i, j));
+                        matrix.Add(new LetterCoord(i, j), numberChr);
+                        matrixLettr.Add(numberChr, new LetterCoord(i, j));
+                        ++numberChr;
                     }
                 }
             }
@@ -77,23 +80,40 @@ namespace Security.Encryption.SymmetricEncryption
         {
             var sbResult = new StringBuilder();
             List<LetterCoord> codeLet = new List<LetterCoord>();
+
+            Action coderTwoLet = () =>
+            {
+                for (int i = 0; i < codeLet.Count - 1; i += 2)
+                {
+                    int x1 = codeLet[i].x,
+                        y1 = codeLet[i + 1].x,
+                        x2 = codeLet[i].y,
+                        y2 = codeLet[i + 1].y;
+
+                    char chr1 = (char)matrix[new LetterCoord(x1, y1)],
+                         chr2 = (char)matrix[new LetterCoord(x2, y2)];
+
+                    sbResult.Append(chr1).Append(chr2);
+                }
+            };
+
             foreach (var chr in text)
             {
-                codeLet.Add(matrix[chr]);
+                codeLet.Add(matrixLettr[chr]);
+                if (codeLet.Count == 2)
+                {
+                    coderTwoLet();
+                    codeLet.Clear();
+                }
             }
 
-            for (int i = 0; i < codeLet.Count-1; i += 2)
+            if (codeLet.Count != 0)
             {
-                int x1 = codeLet[i].x,
-                    y1 = codeLet[i + 1].x,
-                    x2 = codeLet[i].y,
-                    y2 = codeLet[i + 1].y;
-
-                char chr1 = (char)matrix.FirstOrDefault(p => p.Value.x == x1 && p.Value.y == y1).Key,
-                     chr2 = (char)matrix.FirstOrDefault(p => p.Value.x == x2 && p.Value.y == y2).Key;
-
-                sbResult.Append(chr1).Append(chr2);
+                sbResult.Append((char)matrix[new LetterCoord(codeLet[0].x, codeLet[0].y)]);
             }
+
+           
+            
 
             return sbResult.ToString();
         }

@@ -44,13 +44,21 @@ namespace Presenter
 
         private void ViewSavingTextForFile(object sender, SavingTextEventArgs e)
         {
-            fileManager.GetTextRW().Save(e.PathFile, e.Text);
+            Task.Run(()=> 
+            {
+                fileManager.GetTextRW().Save(e.PathFile, e.Text);
+            });
+           
         }
 
         private void ViewOpenTextFromFile(object sender, OpenFileTextEventArgs e)
         {
-            string text = fileManager.GetTextRW().Open(e.PathFile);
-            view.SetInText(text);
+            Task.Run(() =>
+            {
+                string text = fileManager.GetTextRW().Open(e.PathFile);
+                view.SetInText(text);
+            });
+            
         }
 
         private void ViewButtonClick(object sender, EncodDecodEventArgs e)
@@ -67,7 +75,11 @@ namespace Presenter
                     break;
             }
 
-            ProcessText(e.ProcessType, coder, e.Text);
+            Task.Run(() =>
+            {
+                ProcessText(e.ProcessType, coder, e.Text);
+            });
+            
         }
 
         private void ProcessText(EncryptionEnum processType, IEncryption coder, string text)

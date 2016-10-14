@@ -55,12 +55,40 @@ namespace ProjectSecurity
 
         public void SetOutText(string text)
         {
-            textBoxOut.Text = text;
+            if (textBoxOut.InvokeRequired)
+            {
+                textBoxOut.Invoke(new Action(() => {
+                    toolStripProgressEnctypt.Visible = false;
+                    toolStripStatusLabel.Visible = true;
+                    textBoxOut.Text = text;
+                }));
+            }
+            else
+            {
+                toolStripProgressEnctypt.Visible = false;
+                toolStripStatusLabel.Visible = true;
+                textBoxOut.Text = text;
+            }
+            
         }
 
         public void SetInText(string text)
         {
-            activeTxtBox.Text = text;
+            if (activeTxtBox.InvokeRequired)
+            {
+                activeTxtBox.Invoke(new Action(() => {
+                    toolStripProgressEnctypt.Visible = false;
+                    toolStripStatusLabel.Visible = true;
+                    activeTxtBox.Text = text;
+                }));
+            }
+            else
+            {
+                toolStripProgressEnctypt.Visible = false;
+                toolStripStatusLabel.Visible = true;
+                activeTxtBox.Text = text;
+            }
+            
         }
 
         protected void OnEncodDecodClick(EncodDecodEventArgs e)
@@ -94,6 +122,8 @@ namespace ProjectSecurity
 
             }
 
+            toolStripProgressEnctypt.Visible = true;
+            toolStripStatusLabel.Visible = false;
             OnEncodDecodClick(arg);
          
         }
@@ -120,7 +150,12 @@ namespace ProjectSecurity
         private void OpenText(object sender, EventArgs e)
         {
             if (FileDialogShow(openFileText) == DialogResult.OK)
+            {
+                toolStripProgressEnctypt.Visible = true;
+                toolStripStatusLabel.Visible = false;
                 OnOpenTextFromFile(new OpenFileTextEventArgs(openFileText.FileName));
+            }
+                
         }
 
         private DialogResult FileDialogShow(FileDialog sender)

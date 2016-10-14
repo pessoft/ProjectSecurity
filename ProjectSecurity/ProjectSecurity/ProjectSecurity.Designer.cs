@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectSecurity));
             this.projectContent = new System.Windows.Forms.TabControl();
             this.tabPageEncryption = new System.Windows.Forms.TabPage();
@@ -84,6 +84,7 @@
             this.toolStripCoder = new System.Windows.Forms.ToolStripSplitButton();
             this.menuCeaserCoder = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPolybiusCoder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripProgressEnctypt = new System.Windows.Forms.ToolStripProgressBar();
             this.projectContent.SuspendLayout();
             this.tabPageEncryption.SuspendLayout();
             this.panelEncodDecod.SuspendLayout();
@@ -333,17 +334,17 @@
             // 
             // chartFrqeLetters
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chartFrqeLetters.ChartAreas.Add(chartArea7);
+            chartArea13.Name = "ChartArea1";
+            this.chartFrqeLetters.ChartAreas.Add(chartArea13);
             this.chartFrqeLetters.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend7.Name = "Legend1";
-            this.chartFrqeLetters.Legends.Add(legend7);
+            legend13.Name = "Legend1";
+            this.chartFrqeLetters.Legends.Add(legend13);
             this.chartFrqeLetters.Location = new System.Drawing.Point(3, 16);
             this.chartFrqeLetters.Name = "chartFrqeLetters";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chartFrqeLetters.Series.Add(series7);
+            series13.ChartArea = "ChartArea1";
+            series13.Legend = "Legend1";
+            series13.Name = "Series1";
+            this.chartFrqeLetters.Series.Add(series13);
             this.chartFrqeLetters.Size = new System.Drawing.Size(590, 293);
             this.chartFrqeLetters.TabIndex = 0;
             this.chartFrqeLetters.Text = "chart1";
@@ -411,17 +412,17 @@
             // 
             // chartFrqePairLetters
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chartFrqePairLetters.ChartAreas.Add(chartArea8);
+            chartArea14.Name = "ChartArea1";
+            this.chartFrqePairLetters.ChartAreas.Add(chartArea14);
             this.chartFrqePairLetters.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend8.Name = "Legend1";
-            this.chartFrqePairLetters.Legends.Add(legend8);
+            legend14.Name = "Legend1";
+            this.chartFrqePairLetters.Legends.Add(legend14);
             this.chartFrqePairLetters.Location = new System.Drawing.Point(3, 16);
             this.chartFrqePairLetters.Name = "chartFrqePairLetters";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chartFrqePairLetters.Series.Add(series8);
+            series14.ChartArea = "ChartArea1";
+            series14.Legend = "Legend1";
+            series14.Name = "Series1";
+            this.chartFrqePairLetters.Series.Add(series14);
             this.chartFrqePairLetters.Size = new System.Drawing.Size(590, 293);
             this.chartFrqePairLetters.TabIndex = 0;
             this.chartFrqePairLetters.Text = "chart1";
@@ -429,7 +430,8 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
+            this.toolStripStatusLabel,
+            this.toolStripProgressEnctypt});
             this.statusStrip.Location = new System.Drawing.Point(0, 400);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(760, 22);
@@ -592,7 +594,7 @@
             // 
             this.btnEncoding.Image = ((System.Drawing.Image)(resources.GetObject("btnEncoding.Image")));
             this.btnEncoding.Name = "btnEncoding";
-            this.btnEncoding.Size = new System.Drawing.Size(125, 22);
+            this.btnEncoding.Size = new System.Drawing.Size(152, 22);
             this.btnEncoding.Text = "Encoding";
             this.btnEncoding.Click += new System.EventHandler(this.ButtonEncryptClick);
             // 
@@ -600,7 +602,7 @@
             // 
             this.btnDecoding.Image = ((System.Drawing.Image)(resources.GetObject("btnDecoding.Image")));
             this.btnDecoding.Name = "btnDecoding";
-            this.btnDecoding.Size = new System.Drawing.Size(125, 22);
+            this.btnDecoding.Size = new System.Drawing.Size(152, 22);
             this.btnDecoding.Text = "Decoding";
             this.btnDecoding.Click += new System.EventHandler(this.ButtonEncryptClick);
             // 
@@ -660,6 +662,14 @@
             this.menuPolybiusCoder.Size = new System.Drawing.Size(152, 22);
             this.menuPolybiusCoder.Text = "Polybius coder";
             this.menuPolybiusCoder.Click += new System.EventHandler(this.menuCoderClick);
+            // 
+            // toolStripProgressEnctypt
+            // 
+            this.toolStripProgressEnctypt.MarqueeAnimationSpeed = 30;
+            this.toolStripProgressEnctypt.Name = "toolStripProgressEnctypt";
+            this.toolStripProgressEnctypt.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressEnctypt.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.toolStripProgressEnctypt.Visible = false;
             // 
             // ProjectSecurity
             // 
@@ -768,6 +778,7 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripCoder;
         private System.Windows.Forms.ToolStripMenuItem menuCeaserCoder;
         private System.Windows.Forms.ToolStripMenuItem menuPolybiusCoder;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressEnctypt;
     }
 }
 
