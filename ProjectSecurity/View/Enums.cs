@@ -23,4 +23,10 @@ namespace View
         Letter,
         PairLetter
     }
+
+    public enum Coder
+    {
+        CaesarCoder,
+        PolybiusCoder
+    }
 }

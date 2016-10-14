@@ -7,7 +7,7 @@ namespace View
 {
     public interface IView
     {
-        event EventHandler<ButtonClickEncodDecodEventArgs> ButtonEncodDecodClick;
+        event EventHandler<EncodDecodEventArgs> EncodDecodClick;
         event EventHandler<SavingTextEventArgs> SavingTextForFile;
         event EventHandler<OpenFileTextEventArgs> OpenTextFromFile;
         event EventHandler<FrequencyEventArgs> CalcFrequenceLetter;
@@ -15,5 +15,11 @@ namespace View
         void SetInText(string text);
         void SetFrequencyChart(Chart chart, FrequencyTypeTask freqTypeTask);
         void SetFrequencyDataGrid(DataGridView data, FrequencyTypeTask freqTypeTask);
+    }
+
+    public interface ISetting
+    {
+        event EventHandler<ApplySettingEventArgs> ApplySetting;
+        DialogResult ShowDialog();
     }
 }

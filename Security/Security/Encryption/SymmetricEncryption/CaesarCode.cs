@@ -9,7 +9,7 @@ namespace Security.Encryption.SymmetricEncryption
     /// <summary>
     /// Реализует кодировку и декодировку тектса шифром Цезаря
     /// </summary>
-    public class CaesarCode : BaseEncryption, IEncryption
+    public class CaesarCode :IEncryption
     {
         #region properties
         public int AlphabetLength { get; set; } 
@@ -25,7 +25,7 @@ namespace Security.Encryption.SymmetricEncryption
         /// <param name="keyK">Второй ключ шифра</param>
         public CaesarCode(int keyN = 3, int keyK = 5)
         {
-            AlphabetLength = (int)char.MaxValue;
+            AlphabetLength = 64997;
             KeyN = keyN;
             KeyK = keyK;
         }
@@ -63,7 +63,19 @@ namespace Security.Encryption.SymmetricEncryption
 
             foreach (var chr in text)
             {
-                char tmpRes =(char)((chr - KeyK) / KeyN % AlphabetLength);
+                var min = (chr - KeyK) < 0 ? (chr - KeyK) + AlphabetLength : chr - KeyK;
+                var div = min;
+                while (true)
+                {
+                    if (div % KeyN == 0)
+                    {
+                        div /= KeyN;
+                        break;
+                    }
+                    div += AlphabetLength;
+                }
+
+                char tmpRes =(char)(div % AlphabetLength);
                 result.Append(tmpRes);
             }
 

@@ -30,14 +30,19 @@ namespace ProjectSecurity
             sourceBtnSaveProcessed.Tag = TypeText.Processed;
             textToolStripMenuSaveSource.Tag = TypeText.Source;
             textToolStripMenuSaveProcessed.Tag = TypeText.Processed; ;
+            menuCeaserCoder.Tag = Coder.CaesarCoder;
+            menuPolybiusCoder.Tag = Coder.PolybiusCoder;
+            currentCoder = Coder.CaesarCoder;
             activeTxtBox = textBoxIn;
         }
 
-        public event EventHandler<ButtonClickEncodDecodEventArgs> ButtonEncodDecodClick = delegate{};
+        public event EventHandler<EncodDecodEventArgs> EncodDecodClick = delegate{};
         public event EventHandler<SavingTextEventArgs> SavingTextForFile = delegate { };
         public event EventHandler<OpenFileTextEventArgs> OpenTextFromFile = delegate { };
         public event EventHandler<FrequencyEventArgs> CalcFrequenceLetter = delegate { };
-
+        private int key1 = 0, key2 = 0;
+        private string passwordKey = "hello";
+        private Coder currentCoder;
         private TextBox activeTxtBox;
 
         protected void OnCalcFrequenceLetter(FrequencyEventArgs e)
@@ -58,9 +63,9 @@ namespace ProjectSecurity
             activeTxtBox.Text = text;
         }
 
-        protected void OnButtonEncodDecodClick(ButtonClickEncodDecodEventArgs e)
+        protected void OnEncodDecodClick(EncodDecodEventArgs e)
         {
-            ButtonEncodDecodClick(this, e);
+            EncodDecodClick(this, e);
         }
 
         protected void OnSavingTextForFile(SavingTextEventArgs e)
@@ -77,8 +82,20 @@ namespace ProjectSecurity
         {
             var button = (ToolStripMenuItem)sender;
             var processType = (EncryptionEnum)button.Tag;
-            
-            OnButtonEncodDecodClick(new ButtonClickEncodDecodEventArgs(processType, textBoxIn.Text));
+            EncodDecodEventArgs arg;
+            switch (currentCoder)
+            {
+                case Coder.PolybiusCoder:
+                    arg = new EncodDecodEventArgs(processType, currentCoder, activeTxtBox.Text, passwordKey);
+                    break;
+                default:
+                    arg = new EncodDecodEventArgs(processType, Coder.CaesarCoder, activeTxtBox.Text, key1, key2);
+                    break;
+
+            }
+
+            OnEncodDecodClick(arg);
+         
         }
 
         private void SaveText(object sender, EventArgs e)
@@ -144,6 +161,7 @@ namespace ProjectSecurity
                     toolStripBtnPrcToSrc.Visible = true;
                     sourceBtnSaveProcessed.Visible = true;
                     textToolStripMenuSaveProcessed.Visible = true;
+                    toolStripCoder.Visible = true;
                     toolStripBtnCalcFreqLetters.Visible = false;
                     break;
                 case 1:
@@ -151,6 +169,7 @@ namespace ProjectSecurity
                     toolStripBtnPrcToSrc.Visible = false;
                     sourceBtnSaveProcessed.Visible = false;
                     textToolStripMenuSaveProcessed.Visible = false;
+                    toolStripCoder.Visible = false;
                     toolStripBtnCalcFreqLetters.Visible = true;
                     break;
             }
@@ -206,6 +225,44 @@ namespace ProjectSecurity
                     data.Parent.Controls.Remove(dataGridViewFreqPairLetter);
                     dataGridViewFreqPairLetter = data;
                     dataGridViewFreqPairLetter.Parent.Controls.Add(dataGridViewFreqPairLetter);
+                    break;
+            }
+        }
+
+        private void toolStripBtnSettingKeyClick(object sender, EventArgs e)
+        {
+            ISetting settingKey;
+
+            switch (currentCoder)
+            {
+                case Coder.PolybiusCoder:
+                    settingKey = new SettingPolybiusCoder(passwordKey);
+                    break;
+                default:
+                    settingKey = new SettingCaeserCoder();
+                    break;
+            }
+            settingKey.ApplySetting += SettingKeyApplySetting;
+            settingKey.ShowDialog();
+        }
+
+        private void menuCoderClick(object sender, EventArgs e)
+        {
+            var item = (ToolStripMenuItem)sender;
+            toolStripCoder.Text = item.Text;
+            currentCoder = (Coder)item.Tag;
+        }
+
+        private void SettingKeyApplySetting(object sender, ApplySettingEventArgs e)
+        {
+            switch (currentCoder)
+            {
+                case Coder.PolybiusCoder:
+                    passwordKey = e.PasswordKey;
+                    break;
+                default:
+                    key1 = e.KeyOne;
+                    key2 = e.KeyTwo;
                     break;
             }
         }

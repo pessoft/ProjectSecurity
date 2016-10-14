@@ -15,7 +15,7 @@ namespace Security
         {
             var sbTmp = new StringBuilder();
             
-            foreach (var chr in sourceText)
+            foreach (var chr in sourceText.ToLower())
             {
                 if (char.IsLetter(chr))
                     sbTmp.Append(chr);

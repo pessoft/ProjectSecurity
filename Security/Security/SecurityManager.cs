@@ -29,5 +29,15 @@ namespace Security
         {
             return new CaesarCode(keyN, keyK);
         }
+
+        /// <summary>
+        /// Create classPolybiusCode
+        /// </summary>
+        /// <param name="passwordKey">key matrix</param>
+        /// <returns></returns>
+        public IEncryption PolybiusCoder(string passwordKey)
+        {
+            return new PolybiusCode(passwordKey);
+        }
     }
 }

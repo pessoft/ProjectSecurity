@@ -27,7 +27,7 @@ namespace Presenter
 
         private void Init()
         {
-            view.ButtonEncodDecodClick += ViewButtonClick;
+            view.EncodDecodClick += ViewButtonClick;
             view.OpenTextFromFile += ViewOpenTextFromFile;
             view.SavingTextForFile += ViewSavingTextForFile;
             view.CalcFrequenceLetter += ViewCalcFrequenceLetter;
@@ -53,21 +53,33 @@ namespace Presenter
             view.SetInText(text);
         }
 
-        private void ViewButtonClick(object sender, ButtonClickEncodDecodEventArgs e)
+        private void ViewButtonClick(object sender, EncodDecodEventArgs e)
         {
-            ProcessText(e.ProcessType, e.Text);
+            IEncryption coder;
+
+            switch (e.CoderType)
+            {
+                case Coder.PolybiusCoder:
+                    coder = securityManager.PolybiusCoder(e.PasswordKey);
+                    break;
+                default:
+                    coder = securityManager.CeasarCoder(e.KeyOne, e.KeyTwo);
+                    break;
+            }
+
+            ProcessText(e.ProcessType, coder, e.Text);
         }
 
-        private void ProcessText(EncryptionEnum processType, string text)
+        private void ProcessText(EncryptionEnum processType, IEncryption coder, string text)
         {
             string result = string.Empty;
             switch (processType)
             {
                 case EncryptionEnum.Encoding:
-                    result = securityManager.CeasarCoder().Encoding(text);
+                    result = coder.Encoding(text);
                     break;
                 case EncryptionEnum.Decoding:
-                    result = securityManager.CeasarCoder().Decoding(text);
+                    result = coder.Decoding(text);
                     break;
             }
 

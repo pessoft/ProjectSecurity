@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="EventArguments\ApplySettingEventArgs.cs" />
     <Compile Include="EventArguments\ButtonClickEncodDecodEventArgs.cs" />
     <Compile Include="EventArguments\FrequencyEventArgs.cs" />
     <Compile Include="EventArguments\OpenFileTextEventArgs.cs" />
