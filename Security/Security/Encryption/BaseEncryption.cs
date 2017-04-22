@@ -10,7 +10,7 @@ namespace Security.Encryption
 {
     public abstract class BaseEncryption
     {
-        protected Dictionary<char, int> Alphabet { get; set; } = new Alphabet().GetAlphabet();
+        protected Dictionary<int, int> Alphabet { get; set; } = new Alphabet().GetAlphabet();
     }
 
 

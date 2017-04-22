@@ -31,13 +31,33 @@ namespace Security
         }
 
         /// <summary>
-        /// Create classPolybiusCode
+        /// Create class PairedСipher
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public IEncryption PairedСipher(string key)
+        {
+            return new PairedСipher(key);
+        }
+
+        /// <summary>
+        /// Create class PolybiusCode
         /// </summary>
         /// <param name="passwordKey">key matrix</param>
         /// <returns></returns>
         public IEncryption PolybiusCoder(string passwordKey)
         {
-            return new PolybiusCode(passwordKey);
+            return new VizhinerCode(passwordKey); 
+        }
+
+        /// <summary>
+        /// Create class VizhinerCode
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public IEncryption VizhinerCoder(string key)
+        {
+            return new VizhinerCode(key);
         }
     }
 }

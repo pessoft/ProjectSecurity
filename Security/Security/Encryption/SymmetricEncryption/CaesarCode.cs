@@ -9,7 +9,7 @@ namespace Security.Encryption.SymmetricEncryption
     /// <summary>
     /// Реализует кодировку и декодировку тектса шифром Цезаря
     /// </summary>
-    public class CaesarCode :IEncryption
+    public class CaesarCode : BaseEncryption,IEncryption
     {
         #region properties
         public int AlphabetLength { get; set; } 

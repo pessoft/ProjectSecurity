@@ -66,9 +66,73 @@ namespace Security.Encryption.SymmetricEncryption
             }
         }
 
+        //public string Decoding(string text)
+        //{
+        //    return Substitution(text);
+        //}
+
+        //public string Encoding(string text)
+        //{
+        //    return Substitution(text);
+        //}
+
+        //private string Substitution(string text)
+        //{
+        //    var sbResult = new StringBuilder();
+        //    List<LetterCoord> codeLet = new List<LetterCoord>();
+
+        //    Action coderTwoLet = () =>
+        //    {
+        //        for (int i = 0; i < codeLet.Count - 1; i += 2)
+        //        {
+        //            int x1 = codeLet[i].x,
+        //                y1 = codeLet[i + 1].x,
+        //                x2 = codeLet[i].y,
+        //                y2 = codeLet[i + 1].y;
+
+        //            char chr1 = (char)matrix[new LetterCoord(x1, y1)],
+        //                 chr2 = (char)matrix[new LetterCoord(x2, y2)];
+
+        //            sbResult.Append(chr1).Append(chr2);
+        //        }
+        //    };
+
+        //    foreach (var chr in text)
+        //    {
+        //        codeLet.Add(matrixLettr[chr]);
+        //        if (codeLet.Count == 2)
+        //        {
+        //            coderTwoLet();
+        //            codeLet.Clear();
+        //        }
+        //    }
+
+        //    if (codeLet.Count != 0)
+        //    {
+        //        sbResult.Append((char)matrix[new LetterCoord(codeLet[0].x, codeLet[0].y)]);
+        //    }
+
+
+
+
+        //    return sbResult.ToString();
+        //}
+
         public string Decoding(string text)
         {
-            return Substitution(text);
+            var result = new StringBuilder();
+
+            foreach (var subStr in text.Split(' '))
+            {
+                var xy = subStr.Split('-');
+                if (xy.Length == 2)
+                {
+                    result.Append((char)matrix[new LetterCoord(int.Parse(xy[0]), int.Parse(xy[1]))]);
+                }
+                
+            }
+
+            return result.ToString();
         }
 
         public string Encoding(string text)
@@ -99,23 +163,10 @@ namespace Security.Encryption.SymmetricEncryption
 
             foreach (var chr in text)
             {
-                codeLet.Add(matrixLettr[chr]);
-                if (codeLet.Count == 2)
-                {
-                    coderTwoLet();
-                    codeLet.Clear();
-                }
+                sbResult.Append(matrixLettr[chr].x.ToString()+"-"+matrixLettr[chr].y.ToString()+" ");
             }
-
-            if (codeLet.Count != 0)
-            {
-                sbResult.Append((char)matrix[new LetterCoord(codeLet[0].x, codeLet[0].y)]);
-            }
-
-           
-            
-
             return sbResult.ToString();
         }
+
     }
 }

@@ -68,7 +68,13 @@ namespace Presenter
             switch (e.CoderType)
             {
                 case Coder.PolybiusCoder:
-                    coder = securityManager.PolybiusCoder(e.PasswordKey);
+                    coder = securityManager.PolybiusCoder(e.Key);
+                    break;
+                case Coder.VizhinerCoder:
+                    coder = securityManager.VizhinerCoder(e.Key);
+                    break;
+                case Coder.PairedСipherCoder:
+                    coder = securityManager.PairedСipher(e.Key);
                     break;
                 default:
                     coder = securityManager.CeasarCoder(e.KeyOne, e.KeyTwo);

@@ -12,7 +12,7 @@ namespace View.EventArguments
         public string Text { get; private set; }
         public int KeyOne { get; private set; }
         public int KeyTwo { get; private set; }
-        public string PasswordKey { get; private set; }
+        public string Key { get; private set; }
         public Coder CoderType { get; private set; }
 
         public EncodDecodEventArgs(EncryptionEnum processType, Coder coderType,string text, int key1, int key2)
@@ -27,7 +27,7 @@ namespace View.EventArguments
         public EncodDecodEventArgs(EncryptionEnum processType, Coder coderType, string text, string passwordKey)
         {
             ProcessType = processType;
-            PasswordKey = passwordKey;
+            Key = passwordKey;
             Text = text;
             CoderType = coderType;
         }

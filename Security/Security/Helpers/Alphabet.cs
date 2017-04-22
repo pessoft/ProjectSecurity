@@ -9,9 +9,9 @@ namespace Security.Helpers
 {
     public class Alphabet
     {
-        private  Dictionary<char, int> dataChar = new Dictionary<char, int>();
+        private  Dictionary<int, int> dataChar = new Dictionary<int, int>();
         private  int numberChr = 0;
-        public  Dictionary<char, int> GetAlphabet()
+        public  Dictionary<int, int> GetAlphabet()
         {
             char chrLowA='\0', chrUpA='\0';
             int countAlph = 0;
@@ -26,14 +26,19 @@ namespace Security.Helpers
             var alphabetRus = Enumerable.Range(0, countAlph).Select(i => new CharCode { ChrUp = (char)(chrUpA + i), ChrLow = (char)(chrLowA + i) }).ToList();
 
             alphaToDictionaryLow(alphabetRus);
-           // alphaToDictionaryUp(alphabetRus);
+            alphaToDictionaryUp(alphabetRus);
 
+            dataChar.Add('ё', numberChr++);
+            dataChar.Add('Ё', numberChr++);
+        
             chrLowA = 'a';
             chrUpA = 'A';
             countAlph = 26;
 
             var alphabetEng = Enumerable.Range(0, countAlph).Select(i => new CharCode {  ChrUp = (char)(chrUpA + i), ChrLow = (char)(chrLowA + i) }).ToList();
 
+            //alphaToDictionaryLow(alphabetEng);
+            //alphaToDictionaryUp(alphabetEng);
 
             GetDigit();
 
@@ -45,7 +50,7 @@ namespace Security.Helpers
         {
             for (int i = 0; i < 188; ++i)
             {
-                if (char.IsPunctuation((char)i))
+                if (char.IsPunctuation((char)i) || char.IsSeparator((char)i) || char.IsSymbol((char)i))
                     dataChar.Add((char)i, numberChr++);
             }
 

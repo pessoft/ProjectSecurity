@@ -48,7 +48,9 @@
     <Compile Include="Encryption\BaseEncryption.cs" />
     <Compile Include="Encryption\IEncryption.cs" />
     <Compile Include="Encryption\SymmetricEncryption\CaesarCode.cs" />
+    <Compile Include="Encryption\SymmetricEncryption\PairedСipher.cs" />
     <Compile Include="Encryption\SymmetricEncryption\PolybiusCode.cs" />
+    <Compile Include="Encryption\SymmetricEncryption\VizhinerCode.cs" />
     <Compile Include="Frequency.cs" />
     <Compile Include="Helpers\Alphabet.cs" />
     <Compile Include="Helpers\FrequencyHelper.cs" />

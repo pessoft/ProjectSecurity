@@ -27,6 +27,8 @@ namespace View
     public enum Coder
     {
         CaesarCoder,
-        PolybiusCoder
+        PolybiusCoder,
+        VizhinerCoder,
+        PairedСipherCoder
     }
 }
